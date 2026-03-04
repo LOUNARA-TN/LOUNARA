@@ -14,7 +14,6 @@ fetch('json/products.json')
       link.href = 'product.html?id=' + p.id;
       link.className = 'item-link';
 
-      // UNE SEULE IMAGE (première)
       const img = document.createElement('img');
       img.src = p.images[0];
       img.alt = p.name;
