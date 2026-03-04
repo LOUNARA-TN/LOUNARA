@@ -6,94 +6,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
-
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body id="top">
 
-  <!-- Header / Logo -->
-  <header>
-    <img src="images/logo.png" alt="LOUNARA" class="logo">
-    <p class="subtitle">Collection Femme & Beauté</p>
-  </header>
+<header>
+  <img src="images/logo.png" alt="LOUNARA" class="logo">
+  <p class="subtitle">Collection Femme & Beauté</p>
 
-  <!-- Section Vêtements -->
-  <section class="collection">
-    <h2>Vêtements</h2>
-    <div class="grid">
+  <!-- Menu catégories -->
+  <nav class="categories-menu">
+    <a href="#" data-category="All">Tous</a>
+    <a href="#" data-category="Vêtements">Vêtements</a>
+    <a href="#" data-category="Cosmétiques">Cosmétiques</a>
+  </nav>
+</header>
 
-      <div class="item">
-        <div class="carousel">
-          <img src="images/veste.avif" alt="Veste Noire - vue 1">
-          <img src="images/veste2.avif" alt="Veste Noire - vue 2">
-          <img src="images/veste3.avif" alt="Veste Noire - vue 3">
-        </div>
-        <h3>Veste Noire</h3>
-        <p>Veste élégante en coton premium. Coupe moderne et féminine.</p>
-      </div>
+<section class="collection" id="produits">
+  <h2>Produits</h2>
+  <p class="section-tagline">Élégance, confort et douceur</p>
+  <div class="grid"></div>
+</section>
 
-      <div class="item">
-        <div class="carousel">
-          <img src="images/robe.avif" alt="Robe Satin - vue 1">
-          <img src="images/robe2.avif" alt="Robe Satin - vue 2">
-          <img src="images/robe3.avif" alt="Robe Satin - vue 3">
-        </div>
-        <h3>Robe Satin</h3>
-        <p>Robe fluide parfaite pour l'été, style doux et élégant.</p>
-      </div>
+<section class="about" id="apropos">
+  <h2>À propos</h2>
+  <p>LOUNARA vous propose une sélection de vêtements et cosmétiques importés, pensés pour la femme tunisienne moderne.</p>
+  <p>Suivez-nous sur :</p>
+  <p>
+    <a href="https://www.instagram.com/" target="_blank">Instagram</a> | 
+    <a href="https://www.facebook.com/" target="_blank">Facebook</a>
+  </p>
+</section>
 
-    </div>
-  </section>
-
-  <!-- Section Cosmétiques -->
-  <section class="cosmetics">
-    <h2>Cosmétiques</h2>
-    <div class="grid">
-
-      <div class="item">
-        <div class="carousel">
-          <img src="images/rouge.avif" alt="Rouge à Lèvres - vue 1">
-          <img src="images/rouge2.avif" alt="Rouge à Lèvres - vue 2">
-          <img src="images/rouge3.avif" alt="Rouge à Lèvres - vue 3">
-        </div>
-        <h3>Rouge à Lèvres</h3>
-        <p>Fini doux et confortable, couleur pastel.</p>
-      </div>
-
-      <div class="item">
-        <div class="carousel">
-          <img src="images/creme.avif" alt="Crème Visage - vue 1">
-          <img src="images/creme2.avif" alt="Crème Visage - vue 2">
-          <img src="images/creme3.avif" alt="Crème Visage - vue 3">
-        </div>
-        <h3>Crème Visage</h3>
-        <p>Soin hydratant léger pour une peau lumineuse.</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
+<footer>
+  <div class="footer-content">
     © 2026 LOUNARA — Tous droits réservés
-  </footer>
+  </div>
+</footer>
 
-  <!-- JS minimal pour carousel automatique -->
-  <script>
-    document.querySelectorAll('.carousel').forEach(carousel => {
-      const images = carousel.querySelectorAll('img');
-      let index = 0;
-      setInterval(() => {
-        images.forEach((img, i) => img.style.opacity = i === index ? 1 : 0);
-        index = (index + 1) % images.length;
-      }, 3000); // change image toutes les 3 secondes
-    });
-  </script>
+<!-- Bouton retour en haut -->
+<a href="#top" class="back-to-top" title="Retour en haut">↑</a>
 
+<script src="js/products.js"></script>
+<script>
+// Smooth scroll pour menu
+document.querySelectorAll('nav.categories-menu a').forEach(link=>{
+  link.addEventListener('click', e=>{
+    e.preventDefault();
+    document.querySelector('#produits').scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
 </body>
 </html>
