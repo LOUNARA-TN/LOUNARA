@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
 <style>
 body{margin:0;font-family:Inter,sans-serif;background:#fff;color:#111}
 .main-header{padding:50px 20px 30px;border-bottom:1px solid #eee;text-align:center}
@@ -32,17 +33,21 @@ body{margin:0;font-family:Inter,sans-serif;background:#fff;color:#111}
 .contact-icons img:hover{transform:scale(1.15)}
 .whatsapp-float{position:fixed;bottom:25px;right:25px;background:#25d366;color:#fff;font-size:22px;padding:15px;border-radius:50%}
 footer{padding:40px;font-size:12px;color:#999;border-top:1px solid #eee}
-@media(max-width:900px){.product-layout{flex-direction:column;align-items:center}.main-image{height:500px}}
+@media(max-width:900px){
+  .product-layout{flex-direction:column;align-items:center}
+  .main-image{height:500px}
+}
 @media(max-width:600px){
   .categories-menu{display:flex;flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:15px;padding:0 15px;box-sizing:border-box;-ms-overflow-style:none;scrollbar-width:none}
   .categories-menu a{flex:0 0 auto;white-space:nowrap}
   .categories-menu::-webkit-scrollbar{display:none}
 }
 .main-header a,
-.main-header a p,
-.main-header a img {
+.main-header a img,
+.main-header a p {
   text-decoration: none !important;
   color: inherit !important;
+  cursor: pointer;
 }
 </style>
 </head>
@@ -88,7 +93,6 @@ footer{padding:40px;font-size:12px;color:#999;border-top:1px solid #eee}
 </section>
 
 <footer>© 2026 LOUNARA — Tous droits réservés</footer>
-
 <a href="https://wa.me/21600000000" target="_blank" class="whatsapp-float">💬</a>
 
 <script defer>
@@ -97,10 +101,10 @@ const productId=params.get("id");
 fetch("json/products.json").then(res=>res.json()).then(products=>{
   const p=products.find(p=>p.id===productId);
   if(!p) return;
-  document.querySelector(".product-name").textContent=p.name;
-  document.querySelector(".product-description").textContent=p.description;
   const mainImg=document.querySelector(".main-image");
   const thumbs=document.querySelector(".thumbnails");
+  document.querySelector(".product-name").textContent=p.name;
+  document.querySelector(".product-description").textContent=p.description;
   const imgFirst=new Image();
   imgFirst.src=p.images[0];
   imgFirst.onload=()=>mainImg.src=p.images[0];
