@@ -263,12 +263,12 @@ footer{
   .categories-menu{
     display: flex;
     flex-wrap: nowrap;                  /* empêche le retour à la ligne */
+    justify-content: flex-start;        /* aligne à gauche pour voir “Tous” */
     overflow-x: auto;                   /* scroll horizontal */
     -webkit-overflow-scrolling: touch;  /* scroll fluide sur iOS */
     gap: 15px;                           /* écart entre les liens */
-    padding: 0 15px;                     /* padding pour voir premier et dernier lien */
-    box-sizing: border-box;              /* inclut padding dans largeur */
-    scroll-padding-left: 15px;           /* commence correctement le scroll */
+    padding: 0 15px;                     /* espace à gauche/droite */
+    box-sizing: border-box;              /* inclut le padding dans largeur */
   }
 
   .categories-menu a{
@@ -276,7 +276,7 @@ footer{
     white-space: nowrap;                  /* texte non tronqué */
   }
 
-  /* cacher la scrollbar (optionnel) */
+  /* cacher scrollbar mais scroll actif */
   .categories-menu::-webkit-scrollbar {
     display: none;
   }
