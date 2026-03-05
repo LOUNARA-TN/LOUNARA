@@ -8,7 +8,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-
 <style>
 body{margin:0;font-family:Inter,sans-serif;background:#fff;color:#111}
 .main-header{padding:50px 20px 30px;border-bottom:1px solid #eee;text-align:center}
@@ -19,9 +18,18 @@ body{margin:0;font-family:Inter,sans-serif;background:#fff;color:#111}
 .categories-menu a.active{color:#000;border-bottom:2px solid #a77a7a;padding-bottom:3px}
 .categories-menu a:hover{color:#000}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:50px;max-width:1200px;margin:70px auto;padding:0 40px}
-.item-link{color:inherit;text-decoration:none}
-.item-link img{width:100%;height:420px;object-fit:cover;border-radius:16px;transition:.4s}
-.item-link:hover img{transform:scale(1.05)}
+.item-link{color:inherit;text-decoration:none;position:relative;display:block;transition:transform .35s}
+.item-link:hover{transform:translateY(-6px)}
+.item-link img{width:100%;height:420px;object-fit:cover;border-radius:16px;transition:.5s}
+.item-link:hover img{transform:scale(1.06)}
+.item-disabled{pointer-events:none;opacity:.55}
+.item-disabled img{filter:grayscale(40%)}
+.product-badge{position:absolute;top:14px;left:14px;padding:6px 14px;font-size:11px;font-weight:600;border-radius:30px;letter-spacing:.5px;text-transform:uppercase;box-shadow:0 6px 18px rgba(0,0,0,.15);animation:pulse 2s infinite;display:flex;align-items:center;justify-content:center;z-index:10}
+.badge-nouveau{background:linear-gradient(145deg,#222,#555);color:#fff;text-shadow:0 2px 4px rgba(0,0,0,.5);border:1px solid #fff;animation:pulse 2s infinite,glow 3s infinite}
+.badge-stock{background:linear-gradient(145deg,#16a34a,#4ade80);color:#fff;text-shadow:0 2px 4px rgba(0,0,0,.5);border:1px solid #fff;animation:pulse 2s infinite,glow 3s infinite}
+.badge-rupture{background:linear-gradient(135deg,#999,#bbb);color:#fff;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes glow{0%,100%{box-shadow:0 0 10px rgba(255,255,255,.3)}50%{box-shadow:0 0 20px rgba(255,255,255,.5)}}
 .item-link h3,.item-link p{text-align:center}
 .collection h2{text-align:center;font-family:'Playfair Display',serif;font-size:28px;margin-top:60px}
 .contact{padding:60px 20px;background:#f9f9f9;text-align:center}
@@ -30,90 +38,60 @@ body{margin:0;font-family:Inter,sans-serif;background:#fff;color:#111}
 .contact-icons img:hover{transform:scale(1.15)}
 .whatsapp-float{position:fixed;bottom:25px;right:25px;background:#25d366;color:#fff;font-size:22px;padding:15px;border-radius:50%}
 footer{padding:40px;font-size:12px;color:#999;border-top:1px solid #eee}
-@media(max-width:600px){
-  .categories-menu{display:flex;flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:15px;padding:0 15px;box-sizing:border-box;-ms-overflow-style:none;scrollbar-width:none}
-  .categories-menu a{flex:0 0 auto;white-space:nowrap}
-  .categories-menu::-webkit-scrollbar{display:none}
-}
-.main-header a,
-.main-header a p,
-.main-header a img {
-  text-decoration: none !important;
-  color: inherit !important;
-}
+@media(max-width:600px){.categories-menu{display:flex;flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;gap:15px;padding:0 15px}.categories-menu a{flex:0 0 auto;white-space:nowrap}}
+.main-header a,.main-header a p,.main-header a img{text-decoration:none!important;color:inherit!important}
 </style>
 </head>
 <body>
-
 <header class="main-header">
-  <a href="index.html">
-    <img src="images/logo.png" alt="LOUNARA" class="logo" loading="lazy">
-    <p class="subtitle">Collection Femme & Beauté</p>
-  </a>
-  
-  <nav class="categories-menu">
-    <a href="#" data-category="All" class="active">Tous</a>
-    <a href="#" data-category="Vêtements">Vêtements</a>
-    <a href="#" data-category="Lingerie">Lingerie</a>
-    <a href="#" data-category="Sacs et accessoires">Sacs et accessoires</a>
-    <a href="#" data-category="Produits Beauté">Produits Beauté</a>
-    <a href="#" data-category="Parfums">Parfums</a>
-  </nav>
+<a href="index.html"><img src="images/logo.png" alt="LOUNARA" class="logo"><p class="subtitle">Collection Femme & Beauté</p></a>
+<nav class="categories-menu">
+<a href="#" data-category="All" class="active">Tous</a>
+<a href="#" data-category="Vêtements">Vêtements</a>
+<a href="#" data-category="Lingerie">Lingerie</a>
+<a href="#" data-category="Sacs et accessoires">Sacs et accessoires</a>
+<a href="#" data-category="Produits Beauté">Produits Beauté</a>
+<a href="#" data-category="Parfums">Parfums</a>
+</nav>
 </header>
-
 <section class="collection">
-  <h2>Produits</h2>
-  <div class="grid"></div>
+<h2>Produits</h2>
+<div class="grid"></div>
 </section>
-
 <section class="contact">
-  <h2>Contact</h2>
-  <p>Pour réserver, contactez-nous sur :</p>
-  <div class="contact-icons">
-    <a href="https://www.instagram.com/" target="_blank"><img src="images/instagram.png" alt="Instagram" loading="lazy"></a>
-    <a href="https://www.facebook.com/" target="_blank"><img src="images/facebook.png" alt="Facebook" loading="lazy"></a>
-    <a href="https://wa.me/21600000000" target="_blank"><img src="images/whatsapp.png" alt="Whatsapp" loading="lazy"></a>
-  </div>
+<h2>Contact</h2>
+<p>Pour réserver, contactez-nous sur :</p>
+<div class="contact-icons">
+<a href="https://www.instagram.com/" target="_blank"><img src="images/instagram.png"></a>
+<a href="https://www.facebook.com/" target="_blank"><img src="images/facebook.png"></a>
+<a href="https://wa.me/21600000000" target="_blank"><img src="images/whatsapp.png"></a>
+</div>
 </section>
-
 <footer>© 2026 LOUNARA — Tous droits réservés</footer>
-<a href="https://wa.me/21600000000" target="_blank" class="whatsapp-float">💬</a>
-
-<script defer>
+<a href="https://wa.me/21600000000" class="whatsapp-float">💬</a>
+<script>
 fetch("json/products.json").then(res=>res.json()).then(products=>{
-  const grid=document.querySelector(".grid");
-  const menuLinks=document.querySelectorAll(".categories-menu a");
-  function filter(category="All"){
-    grid.innerHTML="";
-    products.filter(p=>category==="All"||p.category===category)
-            .forEach(p=>{
-      const a=document.createElement("a");
-      a.href="product.html?id="+p.id;
-      a.className="item-link";
-      const img=document.createElement("img");
-      img.src=p.images[0];
-      img.alt=p.name;
-      img.loading="lazy";
-      const h3=document.createElement("h3");
-      h3.textContent=p.name;
-      const pDesc=document.createElement("p");
-      pDesc.textContent=p.description;
-      a.append(img,h3,pDesc);
-      grid.appendChild(a);
-    });
-  }
-  filter();
-  menuLinks.forEach(link=>{
-    link.addEventListener("click",e=>{
-      e.preventDefault();
-      const cat=link.dataset.category;
-      filter(cat);
-      menuLinks.forEach(l=>l.classList.remove("active"));
-      link.classList.add("active");
-    });
-  });
+const grid=document.querySelector(".grid"),menuLinks=document.querySelectorAll(".categories-menu a");
+function filter(category="All"){
+grid.innerHTML="";
+products.filter(p=>category==="All"||p.category===category).forEach(p=>{
+const a=document.createElement("a"); a.href="product.html?id="+p.id; a.className="item-link";
+const img=document.createElement("img"); img.src=p.images[0]; img.alt=p.name; img.loading="lazy";
+a.appendChild(img);
+// Badge
+if(p.badge && p.badge.trim()!==""){
+const badge=document.createElement("div"); badge.classList.add("product-badge");
+switch(p.badge.toLowerCase()){
+case "nouveau": badge.classList.add("badge-nouveau"); badge.textContent="Nouveau"; break;
+case "en stock": badge.classList.add("badge-stock"); badge.textContent="En stock"; break;
+case "rupture": badge.classList.add("badge-rupture"); badge.textContent="Rupture de stock"; a.classList.add("item-disabled"); break;}
+a.appendChild(badge);}
+const h3=document.createElement("h3"); h3.textContent=p.name;
+const desc=document.createElement("p"); desc.textContent=p.description;
+a.append(h3,desc); grid.appendChild(a);});}
+filter();
+menuLinks.forEach(link=>{link.addEventListener("click",e=>{e.preventDefault();const cat=link.dataset.category;filter(cat);menuLinks.forEach(l=>l.classList.remove("active"));link.classList.add("active");});});
 });
 </script>
-
 </body>
 </html>
