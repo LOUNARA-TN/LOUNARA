@@ -86,6 +86,7 @@ a {
   text-align:center;
 }
 
+/* CONTACT BAS */
 .contact{
   text-align:center;
   padding:60px 20px;
@@ -105,6 +106,7 @@ a {
   font-weight:500;
 }
 
+/* PRODUCT PAGE */
 .product-layout{
   display:flex;
   gap:80px;
@@ -162,6 +164,7 @@ a {
   font-weight:500;
 }
 
+/* WHATSAPP */
 .whatsapp-float{
   position:fixed;
   bottom:25px;
@@ -174,6 +177,7 @@ a {
   text-decoration:none;
 }
 
+/* RESPONSIVE PRODUCT */
 @media(max-width:900px){
   .product-layout{
     flex-direction:column;
@@ -193,6 +197,7 @@ footer{
   border-top:1px solid #eee;
 }
 
+/* TITRE PRODUITS CENTRÉ */
 .collection h2{
   text-align:center;
   font-family:'Playfair Display',serif;
@@ -200,6 +205,7 @@ footer{
   margin-top:60px;
 }
 
+/* CONTACT ICONS */
 .contact-icons{
   margin-top:20px;
   display:flex;
@@ -217,6 +223,7 @@ footer{
   transform:scale(1.15);
 }
 
+/* BOUTON RETOUR */
 .back-button {
   max-width: 1200px;
   margin: 30px auto 0;
@@ -249,18 +256,32 @@ footer{
   transform: translateX(-5px);
 }
 
+/* ===================== */
+/* RESPONSIVE CATEGORIES  */
+/* ===================== */
 @media(max-width:600px){
   .categories-menu{
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    gap: 15px;
-    padding: 0 10px;
+    display: flex;
+    flex-wrap: nowrap;                  /* empêche le retour à la ligne */
+    overflow-x: auto;                   /* scroll horizontal */
+    -webkit-overflow-scrolling: touch;  /* scroll fluide sur iOS */
+    gap: 15px;                           /* écart entre les liens */
+    padding: 0 15px;                     /* padding pour voir premier et dernier lien */
+    box-sizing: border-box;              /* inclut padding dans largeur */
+    scroll-padding-left: 15px;           /* commence correctement le scroll */
   }
 
   .categories-menu a{
-    flex: 0 0 auto;
+    flex: 0 0 auto;                      /* empêche le lien de rétrécir */
+    white-space: nowrap;                  /* texte non tronqué */
+  }
+
+  /* cacher la scrollbar (optionnel) */
+  .categories-menu::-webkit-scrollbar {
+    display: none;
+  }
+  .categories-menu {
+    -ms-overflow-style: none;  /* IE/Edge */
+    scrollbar-width: none;     /* Firefox */
   }
 }
-
-
