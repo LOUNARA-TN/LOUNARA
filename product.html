@@ -27,7 +27,6 @@
 </div>
 
 <main class="product-layout">
-
   <div class="product-images">
     <img class="main-image" src="" alt="">
     <div class="thumbnails"></div>
@@ -38,34 +37,45 @@
     <p class="product-description"></p>
     <p class="order-info">Pour réserver, nous contacter sur Instagram, Facebook ou WhatsApp.</p>
   </div>
-
 </main>
 
-  <section class="contact">
+<section class="contact">
   <h2>Contact</h2>
   <p>Pour réserver, contactez-nous sur :</p>
-
   <div class="contact-icons">
-    <a href="https://www.instagram.com/" target="_blank">
-      <img src="images/instagram.png" alt="Instagram">
-    </a>
-    <a href="https://www.facebook.com/" target="_blank">
-      <img src="images/facebook.png" alt="Facebook">
-    </a>
-    <a href="https://wa.me/21600000000" target="_blank">
-      <img src="images/whatsapp.png" alt="Whatsapp">
-    </a>
+    <a href="https://www.instagram.com/" target="_blank"><img src="images/instagram.png" alt="Instagram"></a>
+    <a href="https://www.facebook.com/" target="_blank"><img src="images/facebook.png" alt="Facebook"></a>
+    <a href="https://wa.me/21600000000" target="_blank"><img src="images/whatsapp.png" alt="Whatsapp"></a>
   </div>
 </section>
-  
-<footer>
-  © 2026 LOUNARA — Tous droits réservés
-</footer>
 
+<footer>© 2026 LOUNARA — Tous droits réservés</footer>
 <a href="https://wa.me/21600000000" target="_blank" class="whatsapp-float">💬</a>
 
-<script>
-const params=new URLSearchParams(window.location.search),productId=params.get("id");fetch("json/products.json").then(e=>e.json()).then(e=>{let t=e.find(e=>e.id===productId);if(!t)return;document.querySelector(".product-name").textContent=t.name,document.querySelector(".product-description").textContent=t.description;let c=document.querySelector(".main-image"),r=document.querySelector(".thumbnails");c.src=t.images[0],t.images.forEach((e,t)=>{let s=document.createElement("img");s.src=e,s.classList.add("thumb"),0===t&&s.classList.add("active-thumb"),r.appendChild(s),s.addEventListener("click",()=>{c.src=e,document.querySelectorAll(".thumb").forEach(e=>e.classList.remove("active-thumb")),s.classList.add("active-thumb")})})});
+<script defer>
+const params=new URLSearchParams(window.location.search),
+productId=params.get("id");
+fetch("json/products.json").then(res=>res.json()).then(products=>{
+  let p=products.find(p=>p.id===productId);
+  if(!p)return;
+  document.querySelector(".product-name").textContent=p.name;
+  document.querySelector(".product-description").textContent=p.description;
+  let mainImg=document.querySelector(".main-image"),
+      thumbs=document.querySelector(".thumbnails");
+  mainImg.src=p.images[0];
+  p.images.forEach((src,i)=>{
+    let img=document.createElement("img");
+    img.src=src;
+    img.classList.add("thumb");
+    if(i===0) img.classList.add("active-thumb");
+    thumbs.appendChild(img);
+    img.addEventListener("click",()=>{
+      mainImg.src=src;
+      document.querySelectorAll(".thumb").forEach(t=>t.classList.remove("active-thumb"));
+      img.classList.add("active-thumb");
+    });
+  });
+});
 </script>
 
 </body>
